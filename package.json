@@ -1,0 +1,24 @@
+{
+  "name": "httpea",
+  "version": "1.0.0",
+  "description": "An iojs package that creates simple http server for the current folder using ES 2015 features (has no dependencies or config)",
+  "bin": {
+  	"httpea": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imagentleman/httpea.git"
+  },
+  "preferGlobal": true,
+  "keywords": [
+    "http",
+    "server",
+    "cli"
+  ],
+  "author": "imagentleman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imagentleman/httpea/issues"
+  },
+  "homepage": "https://github.com/imagentleman/httpea#readme"
+}
