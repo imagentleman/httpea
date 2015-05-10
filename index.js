@@ -6,6 +6,11 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 
+function return404(res, filePath) {
+  res.writeHead(404, {'Content-Type': 'text/plain'});
+  res.end(`Couldn't find the file: ${filePath}`);
+}
+
 let server = http.createServer();
 
 server.listen(80, 'localhost');
@@ -27,8 +32,7 @@ server.on('request', function(req, res) {
   let filePath = path.join(process.cwd(), req.url);
 
   if (!fs.existsSync(filePath)) {
-    res.writeHead(404, {'Content-Type': 'text/plain'});
-    res.end(`Couldn't find the file: ${filePath}`);
+    return404(res, filePath);
     return;
   }
 
@@ -36,6 +40,10 @@ server.on('request', function(req, res) {
 
   if (stats.isDirectory()) {
     filePath = path.join(filePath, '/index.html');
+    if (!fs.existsSync(filePath)) {
+      return404(res, filePath);
+      return;
+    }
   }
 
   let file = fs.readFileSync(filePath);
