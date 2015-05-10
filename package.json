@@ -1,6 +1,6 @@
 {
   "name": "httpea",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "An iojs package that creates simple http server for the current folder using ES 2015 features (has no dependencies or config)",
   "bin": {
   	"httpea": "index.js"
