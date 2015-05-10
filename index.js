@@ -24,7 +24,7 @@ server.on('listening', function() {
 });
 
 server.on('request', function(req, res) {
-  let filePath = path.join(__dirname, req.url);
+  let filePath = path.join(process.cwd(), req.url);
 
   if (!fs.existsSync(filePath)) {
     res.writeHead(404, {'Content-Type': 'text/plain'});
