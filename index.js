@@ -5,15 +5,14 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
+const server = http.createServer();
 
 function return404(res, filePath) {
   res.writeHead(404, {'Content-Type': 'text/plain'});
   res.end(`Couldn't find the file: ${filePath}`);
 }
 
-let server = http.createServer();
-
-server.listen(80, 'localhost');
+server.listen(8080, 'localhost');
 
 server.on('error', function(e) {
   if (e.code == 'EADDRINUSE') {
@@ -22,10 +21,10 @@ server.on('error', function(e) {
 });
 
 server.on('listening', function() {
-  let port = server.address().port === 80 ? '': `:${server.address().port}`;
+  const port = server.address().port === 8080 ? '8080': `:${server.address().port}`;
 
   console.log('Static Folder Server running at:');
-  console.log(`http://localhost${port}`);
+  console.log(`http://localhost:${port}`);
 });
 
 server.on('request', function(req, res) {
@@ -36,7 +35,7 @@ server.on('request', function(req, res) {
     return;
   }
 
-  let stats = fs.lstatSync(filePath);
+  const stats = fs.lstatSync(filePath);
 
   if (stats.isDirectory()) {
     filePath = path.join(filePath, '/index.html');
@@ -46,7 +45,7 @@ server.on('request', function(req, res) {
     }
   }
 
-  let file = fs.readFileSync(filePath);
+  const file = fs.readFileSync(filePath);
   res.writeHead(200);
   res.write(file);
   res.end();
