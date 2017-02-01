@@ -1,6 +1,6 @@
 {
   "name": "httpea",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "A node package that creates simple http server for the current folder (has no dependencies or config)",
   "bin": {
     "httpea": "index.js"
